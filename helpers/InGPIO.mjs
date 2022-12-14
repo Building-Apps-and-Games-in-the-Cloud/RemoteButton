@@ -4,6 +4,7 @@ class InGPIO {
     constructor(GPIONumber, callback) {
         this.GPIONumber = GPIONumber;
         this.callback = callback;
+        this.oldValue = undefined;
     }
 
     init() {
@@ -16,7 +17,17 @@ class InGPIO {
                     console.log(`GPIO ${this.GPIONumber} error ${error}`);
                 }
                 else {
-                    this.callback(value);
+                    if(this.oldValue==undefined){
+                        console.log(`    Sending:${value}`);
+                        this.callback(value);
+                    }
+                    else {
+                        if(this.oldValue != value){
+                            console.log(`    Sending:${value}`);
+                            this.callback(value);
+                        }
+                    }
+                    this.oldValue = value;
                 }
             })
         }

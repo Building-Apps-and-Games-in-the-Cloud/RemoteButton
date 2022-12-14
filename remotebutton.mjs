@@ -22,7 +22,7 @@ app.use('/index.html', index);
 let sockets = [];
 
 function sendButtonState(state){
-    sockets.forEach(s => s.send(msg));
+    sockets.forEach(s => s.send(state));
 }
 
 let buttonGPIO = new InGPIO(17, sendButtonState);
