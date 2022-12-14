@@ -1,0 +1,31 @@
+{
+  "name": "remotebutton",
+  "version": "1.0.0",
+  "description": "Remote button using GPIO",
+  "main": "remotebutton.mjs",
+  "scripts": {
+    "devstart": "nodemon remotebutton.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Building-Apps-and-Games-in-the-Cloud/RemoteButton.git"
+  },
+  "author": "Rob Miles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Building-Apps-and-Games-in-the-Cloud/RemoteButton/issues"
+  },
+  "homepage": "https://github.com/Building-Apps-and-Games-in-the-Cloud/RemoteButton#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "onoff": "^6.0.3",
+    "socket.io": "^4.5.4",
+    "ws": "^8.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
