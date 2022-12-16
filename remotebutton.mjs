@@ -28,7 +28,7 @@ function sendButtonState(state){
 let buttonGPIO = new InGPIO(17, sendButtonState);
 buttonGPIO.init();
 
-const port = process.env.PORT || 8083;
+const port = process.env.PORT || 8080;
 
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server });

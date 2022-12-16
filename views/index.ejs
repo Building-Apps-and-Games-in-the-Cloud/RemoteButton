@@ -2,12 +2,13 @@
 <html>
 
 <head>
-    <title>Light Controller</title>
+    <title>Remote Button</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
     <script type="text/javascript">
-        const ws = new WebSocket('ws://iotmaster.local:8083');
+        const ws = new WebSocket('ws://iotmaster.local:8080');
 
         // Browser WebSockets have slightly different syntax than `ws`.
         // Instead of EventEmitter syntax `on('open')`, you assign a callback
@@ -21,28 +22,23 @@
         };
 
         ws.onmessage = function (msg) {
-            document.querySelector('#messages').innerHTML += `<div>${msg.data}</div>`;
+            let element = document.getElementById("buttonBanner");
+
+            if(msg.data==1){
+                element.innerText = "UP";
+            }
+            else {
+                element.innerText = "DOWN";
+            }
         };
     </script>
 </head>
 
 <body>
-    <h1>Chat</h1>
-    <div>
-      <input id="message" placeholder="Message">
-      <button id="send" disabled="true">Send</button>
-    </div>
-    <div id="messages">
-    </div>
-    
+    <h1>Server Button</h1>
+
     <div class="container">
-        <h1 class="mb-3 mt-2">&#128161; light Controller</h1>
-        <button class="btn btn-primary mt-1 btn-block" onclick="window.location.href='/setLightState/on'">
-            Light On
-        </button>
-        <button class="btn btn-primary mt-1 btn-block" onclick="window.location.href='/setLightState/off'">
-            Light Off
-        </button>
+        <h1 id="buttonBanner">unknown</h1>
     </div>
 </body>
 
