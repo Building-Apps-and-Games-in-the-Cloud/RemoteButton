@@ -1,7 +1,6 @@
 
 import express from 'express';
 import { WebSocketServer } from 'ws';
-//let server = new WebSocketServer({port:8083});
 
 import * as http from 'http';
 import { index } from './routes/index.mjs';

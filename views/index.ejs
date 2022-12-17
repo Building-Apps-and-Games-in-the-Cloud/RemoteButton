@@ -8,20 +8,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
     <script type="text/javascript">
-        const ws = new WebSocket('ws://iotmaster.local:8080');
-
-        // Browser WebSockets have slightly different syntax than `ws`.
-        // Instead of EventEmitter syntax `on('open')`, you assign a callback
-        // to the `onopen` property.
-        ws.onopen = function () {
-            document.querySelector('#send').disabled = false;
-
-            document.querySelector('#send').addEventListener('click', function () {
-                ws.send(document.querySelector('#message').value);
-            });
-        };
-
-        ws.onmessage = function (msg) {
+        const socket = new WebSocket('ws://iotmaster.local:8080');
+        socket.onmessage = function (msg) {
             let element = document.getElementById("buttonBanner");
 
             if(msg.data==1){
