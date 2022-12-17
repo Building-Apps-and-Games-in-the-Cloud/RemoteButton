@@ -18,9 +18,8 @@ app.set('view-engine', 'ejs');
 // Connect the route handlers to the routes
 app.use('/index.html', index);
 
-let sockets = [];
 
-function sendButtonState(state){
+function sendButtonState(state) {
     sockets.forEach(s => s.send(state));
 }
 
@@ -29,10 +28,11 @@ buttonGPIO.init();
 
 const port = process.env.PORT || 8080;
 
-const server = http.createServer(app);
-const wss = new WebSocketServer({ server });
+const httpServer = http.createServer(app);
+const webSocketServer = new WebSocketServer({ server: httpServer });
 
-wss.on('connection', (socket) => {
+let sockets = [];
+webSocketServer.on('connection', (socket) => {
     console.log("connected");
     sockets.push(socket);
     socket.on('message', (message) => {
@@ -44,7 +44,7 @@ wss.on('connection', (socket) => {
     });
 });
 
-server.listen(port, () => {
+httpServer.listen(port, () => {
     console.log("Server running");
 });
 

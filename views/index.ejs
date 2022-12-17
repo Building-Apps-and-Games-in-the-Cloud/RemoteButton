@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+
     <script type="text/javascript">
         const socket = new WebSocket('ws://iotmaster.local:8080');
-        socket.onmessage = function (msg) {
+        socket.onmessage = (msg) => {
             let element = document.getElementById("buttonBanner");
 
-            if(msg.data==1){
+            if (msg.data == 1) {
                 element.innerText = "UP";
             }
             else {
